@@ -2,14 +2,18 @@
 <html>
 <head>
 	<title>留言</title>
+
 </head>
 <body>
 	<h2>留言</h2>
+	<section>
 	<ol id="messageList"></ol>
-<form id="messagePostForm">
-	<input type="text"	name="content">
-	<input type="submit" name="提交">
-</form>
+	<form id="messagePostForm">
+		<label>姓名 <input type="text" name="name"></label>
+		<label>内容	<input type="text"	name="content"></label>
+		<input type="submit" name="提交">
+	</form>
+	</section>
 <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.7.3/dist/av-min.js"></script>
 <script type="text/javascript" src="./main.js"></script>
 </body>

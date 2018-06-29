@@ -12,9 +12,9 @@ var query = new AV.Query('Message');
    	message.map((item)=>{messages.push(item.attributes)})
    	var messageList = document.querySelector('#messageList')
    	messages.forEach((item)=>{
-   		let content = item.content
+
    		let li = document.createElement('li')
-   		li.innerText = content 
+   		li.innerText = `${item.name} : ${item.content}`
    		messageList.appendChild(li)
    	})
   });
@@ -23,13 +23,19 @@ let myForm = document.querySelector('#messagePostForm')
 myForm.addEventListener('submit', (e) => {
     e.preventDefault()
     let content = document.querySelector('input[name=content]').value
+    let name = document.querySelector('input[name=name]').value
     var Message = AV.Object.extend('Message');
     var message = new Message();
     message.save({
+    	name:name,
         content: content
     }).then(function(object) {
-      	window.location.reload()
-        console.log(object);
+      	let li = document.createElement('li')
+   		li.innerText = `${object.attributes.name} : ${object.attributes.content}`
+   		var messageList = document.querySelector('#messageList')
+   		messageList.appendChild(li)
+   		document.querySelector('input[name=content]').value = ' '
+   		
     })
 })
 
